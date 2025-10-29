@@ -40,7 +40,7 @@ public class ClienteService implements IClienteService {
     @Override
     public void delete(Integer id) {
         // TODO Auto-generated method stub
-        return clienteRepo.deleteById(id);
+        clienteRepo.deleteById(id);
     }
 
 }
