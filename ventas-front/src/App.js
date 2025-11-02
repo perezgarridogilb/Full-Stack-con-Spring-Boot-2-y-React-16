@@ -6,8 +6,8 @@ function App() {
   const menu = 1;
   return (
     <div>
-      <Header/>
-      <Menu titulo ={menu}/>
+
+
     </div>
   );
 }
