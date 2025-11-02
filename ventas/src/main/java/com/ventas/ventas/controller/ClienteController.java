@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ventas.ventas.model.Cliente;
 import com.ventas.ventas.service.ClienteService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,12 +43,14 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> create(@RequestBody Cliente cliente) {
+    /** valid es código de error correcto */
+    public ResponseEntity<Cliente> create(@Valid @RequestBody Cliente cliente) {
         return new ResponseEntity<>(clienteService.create(cliente), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
+    /** valid es código de error correcto */
+    public ResponseEntity<Cliente> update(@Valid @RequestBody Cliente cliente) {
         return clienteService.findById(cliente.getIdCliente()
         ).map(c -> ResponseEntity.ok(clienteService.update(cliente)))
         .orElseGet(() -> ResponseEntity.notFound().build());
