@@ -2,7 +2,7 @@ import React from 'react'
 import Menu from './Menu';
 import Header from './Header';
 
-const Layout = () => {
+const Layout = (props) => {
     return (<div>
 
         <Header/>
@@ -11,7 +11,7 @@ const Layout = () => {
             <div className="columns">
                 <div className="column is-one-quarter"><Menu/></div>
                 <div className="column">
-                    <p>Este es el contenido</p>
+                    {props.children}
                 </div>
             </div>
         </div>

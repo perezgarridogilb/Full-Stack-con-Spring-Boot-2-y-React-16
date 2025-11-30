@@ -1,9 +1,12 @@
 import React from 'react'
+import Layout from '../components/commons/Layout'
 
 const Home = () => {
-    return ( 
-        <h1>Home</h1>
-     );
+    return (
+        <Layout>
+            <p>Home</p>
+        </Layout>
+    );
 }
- 
+
 export default Home;

@@ -1,35 +1,35 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 
 const Menu = () => {
     return (
-        
+
         <div className='panel'>
             <p className='panel-heading'>
                 Menu
             </p>
             <div className="panel-block">
-                <div className="button is-fullwidth">
+                <Link to="/" className="button is-fullwidth">
                     <span>
                         <i className="fas fa-home"></i>
                     </span>
                     <span>
-Inicio
+                        Inicio
                     </span>
-                    
-                </div>
-                                <div className="button is-fullwidth">
+
+                </Link>
+                <Link to="/clientes" className="button is-fullwidth">
                     <span>
                         <i className="fas fa-users"></i>
                     </span>
                     <span>
-Clientes
+                        Clientes
                     </span>
-                    
-                </div>
+                </Link>
             </div>
         </div>
     );
 }
- 
+
 export default Menu;
