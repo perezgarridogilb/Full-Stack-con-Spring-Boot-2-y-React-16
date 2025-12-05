@@ -1,7 +1,9 @@
 import React from 'react'
 import Layout from '../components/commons/Layout';
+import TableCliente from '../components/clientes/TableCliente';
 
 const Clientes = () => {
+    
     return (
         <Layout>
             <div className='panel '>
@@ -9,32 +11,15 @@ const Clientes = () => {
                     Clientes
                 </div>
                 <div className='box'>
-                    <table className='table is-hoverable is-fullwidth'>
-                        <thead>
-                            <tr>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Dirección</th>
-                                <th>Teléfono</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <button className='button'>
-                                        <span className='icon is-small'>
-                                            <i className='fas fa-bold'></i>
-                                        </span>
-                                    </button>
-                                </td>
-                                <td>Aguilar</td>
-                                <td>C. Lincon</td>
-                                <td>2222222221</td>
-                                <td>freddy@gmail.com</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className='container'>
+                        <button className='button is-small is-primary' >
+                            <span className='icon is-small '>
+                                <i className='fas fa-plus'></i>
+                            </span>
+                            <span>Registrar nuevo</span>
+                        </button>
+                    </div>
+                    <TableCliente/>
                 </div>
             </div>
         </Layout>
