@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ModalContext from '../../contexts/modal/modalContex';
 
 const RowCliente = ({cliente}) => {
 
-    const ModificarCliente = () => {
+        const { setShowModal, setmodalTitle } = useContext(ModalContext);
+    
+
+    const abrirModificarCliente = () => {
+        setmodalTitle('modificar cliente');
+        setShowModal(true);
         console.log("Modificando...");        
     }
 
@@ -17,7 +23,7 @@ const RowCliente = ({cliente}) => {
                 <button 
                 className='button is-small is-info mr-1' 
                 title='Modificar'
-                onClick={ () => ModificarCliente() }
+                onClick={ () => abrirModificarCliente() }
                 >
                     <span className='icon is-small '>
                         <i className='fas fa-edit'></i>

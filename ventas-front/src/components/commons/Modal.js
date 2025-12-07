@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ModalContext } from "../../contexts/modal/modalContex";
 
 const Modal = () => {
-    const { showModal, modalTitle, setShowModal } = useContext(ModalContext);
+    const { showModal, modalTitle, setShowModal, setmodalTitle } = useContext(ModalContext);
 
     const cerrarModal = () => {
         setShowModal(false);
@@ -20,7 +20,10 @@ const Modal = () => {
                     <button
                         className='delete'
                         aria-label='close'
-                        onClick={cerrarModal}
+                        onClick={ () => {
+                            cerrarModal();
+                            setmodalTitle('')}
+                        }
                     ></button>
                 </header>
 

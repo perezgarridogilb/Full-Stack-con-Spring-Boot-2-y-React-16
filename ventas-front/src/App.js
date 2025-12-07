@@ -8,7 +8,6 @@ import { ModalContextProvider } from './contexts/modal/modalContex';
 
 function App() {
   return (
-        <ModalContextProvider>
 
     <Router>
       <Routes>
@@ -16,7 +15,6 @@ function App() {
         <Route path="/clientes" element={<Clientes />} />
       </Routes>
     </Router>
-        </ModalContextProvider>
 
   );
 }

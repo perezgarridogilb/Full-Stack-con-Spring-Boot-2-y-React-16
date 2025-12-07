@@ -5,11 +5,12 @@ import { ModalContext } from "../contexts/modal/modalContex";
 const ToolbarCliente = () => {
         const abrirModalCrear = () => {
         console.log("Modal Crear...");
-                    setShowModal(true);
+        setShowModal(true);
+        setmodalTitle('Registrar nuevo cliente');
 
     }
 
-       const { showModal, modalTitle, setShowModal } = useContext(ModalContext);
+       const { showModal, modalTitle, setShowModal, setmodalTitle } = useContext(ModalContext);
     
         const cerrarModal = () => {
             setShowModal(false);
@@ -17,7 +18,9 @@ const ToolbarCliente = () => {
     return (<div className='container'>
         <button 
         className='button is-small is-primary'
-        onClick={ () => abrirModalCrear() }
+        onClick={ () => {
+            abrirModalCrear()
+        } }
         >
             <span className='icon is-small '>
                 <i className='fas fa-plus'></i>
