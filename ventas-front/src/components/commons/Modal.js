@@ -1,32 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ModalContext } from "../../contexts/modal/modalContex";
 
-const Modal = (props) => {
+const Modal = () => {
+    const { showModal, modalTitle, setShowModal } = useContext(ModalContext);
 
     const cerrarModal = () => {
-        console.log("Cerrando");
+        setShowModal(false);
     }
 
-    return ( 
-        <div 
-            className="modal is-active"
-            style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100vw",
-                height: "100vh",
-            }}
-        >
-            {/* Fondo del modal */}
-            <div className="modal-background"></div>
+    if (!showModal) return null; // ← oculta por completo el modal
 
-            {/* Contenedor del modal */}
+    return (
+        <div className="modal is-active">
+            <div className="modal-background" onClick={cerrarModal}></div>
+
             <div className="modal-card">
                 <header className='modal-card-head'>
-                    <p className='modal-card-title'>Crear cliente</p>
+                    <p className='modal-card-title'>{modalTitle}</p>
                     <button
                         className='delete'
                         aria-label='close'

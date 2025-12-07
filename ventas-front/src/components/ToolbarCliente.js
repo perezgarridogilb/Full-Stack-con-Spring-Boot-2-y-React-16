@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ModalContext } from "../contexts/modal/modalContex";
 
 
 const ToolbarCliente = () => {
         const abrirModalCrear = () => {
         console.log("Modal Crear...");
+                    setShowModal(true);
+
     }
+
+       const { showModal, modalTitle, setShowModal } = useContext(ModalContext);
+    
+        const cerrarModal = () => {
+            setShowModal(false);
+        }
     return (<div className='container'>
         <button 
         className='button is-small is-primary'
