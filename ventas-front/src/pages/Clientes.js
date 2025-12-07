@@ -3,6 +3,7 @@ import Layout from '../components/commons/Layout';
 import TableCliente from '../components/clientes/TableCliente';
 import ToolbarCliente from '../components/ToolbarCliente';
 import Modal from '../components/commons/Modal';
+import FormCliente from '../components/clientes/FormCliente';
 
 const Clientes = () => {
 
@@ -17,7 +18,9 @@ const Clientes = () => {
                     <TableCliente/>
                 </div>
             </div>
-            <Modal/>
+            <Modal>
+                <FormCliente/>
+            </Modal>
         </Layout>
     );
 }

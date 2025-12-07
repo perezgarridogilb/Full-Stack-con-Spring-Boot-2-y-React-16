@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ModalContext } from "../../contexts/modal/modalContex";
 
-const Modal = () => {
+const Modal = (props) => {
     const { showModal, modalTitle, setShowModal, setmodalTitle } = useContext(ModalContext);
 
     const cerrarModal = () => {
@@ -28,7 +28,7 @@ const Modal = () => {
                 </header>
 
                 <section className='modal-card-body'>
-                    Contenido
+                    {props.children}
                 </section>
             </div>
         </div>
