@@ -1,7 +1,7 @@
 import React from 'react'
 import Menu from './Menu';
 import Header from './Header';
-import { ModalContextProvider } from '../../contexts/modal/modalContex';
+import { ModalContextProvider } from '../../contexts/modalContex';
 
 const Layout = (props) => {
     return (

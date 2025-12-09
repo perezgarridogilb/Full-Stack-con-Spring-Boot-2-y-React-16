@@ -4,7 +4,6 @@ import '@fortawesome/fontawesome-free/js/all';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Clientes from './pages/Clientes';
-import { ModalContextProvider } from './contexts/modal/modalContex';
 
 function App() {
   return (

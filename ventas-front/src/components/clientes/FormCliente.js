@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import ModalContext from '../../contexts/modal/modalContex';
+import { ModalContext } from '../../contexts/modalContex';
 
 const FormCliente = () => {
 
@@ -15,7 +15,9 @@ const FormCliente = () => {
     }
 
        const cerrarModal = () => {
-        setShowModal(false)      
+           limpiarForm();
+    setShowModal(false);
+    // obtenerCliente(null);     
     }
 
     const handleChange = e => {
@@ -31,10 +33,43 @@ const FormCliente = () => {
 
     const handleOnSubmit = e => {
         e.preventDefault();
+        debugger;
+            // validar
+        if (cliente.nombres.trim() === '' && cliente.apellidos.trim() === '' && cliente.email.trim() === '') {
+            setMensaje('Los nombres, apellidos y el email son obligatorios.');
+            return;
+        }
+
+        // obtener objeto enviar
+        console.log(obtenerClienteAEnviar());
+    
+
+        // cerrar y limpiar el modal
+        cerrarModal();
     }
+
+    const obtenerClienteAEnviar = () => {
+        let clienteTemp = {...cliente};
+        if (clienteTemp.direccion === '') {
+            delete clienteTemp.direccion;
+        }
+        debugger;
+        if (clienteTemp.telefono === '') {
+            delete clienteTemp.telefono;
+        }
+        return clienteTemp;
+    }
+
+      const limpiarForm = () => {
+    setMensaje(null);
+    setCliente(clienteDefault);
+  }
+
+ 
 
     return (
         <form onSubmit={handleOnSubmit}>
+      { mensaje ? <div className="notification is-danger">{mensaje}</div> : null }
 
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
@@ -151,8 +186,8 @@ const FormCliente = () => {
                 <div class="field-body">
                     <div class="field">
                         <div class="control">
-                            <button type="submit" class="button is-primary mr-1" onClick={ () => cerrarModal() }>Guardar</button>
-                            <button type="button" class="button">Cancelar</button>
+              <button type="submit" className="button is-primary mr-1">Guardar</button>
+                            <button type="button" class="button" onClick={ () => cerrarModal() }>Cancelar</button>
                         </div>
                     </div>
                 </div>
