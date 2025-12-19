@@ -1,6 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import clienteReducer from '../reducer/clienteReducer';
-import { OBTENER_CLIENTES } from '../components/const/actionTypes';
+import { OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../components/const/actionTypes';
+import { type } from '@testing-library/user-event/dist/type';
 
 // 1. Crear el contexto
 export const ClienteContext = createContext();
@@ -41,11 +42,19 @@ export const ClienteContextProvider = (props) => {
             })
         }
 
+    const registrarCliente = cliente => {
+        dispatch({
+            type: REGISTRAR_CLIENTE,
+            payload: cliente
+        })
+    }
+
     return (
         <ClienteContext.Provider
             value={{
                 clientesList: state.clientesList,
-                obtenerClientes
+                obtenerClientes,
+                registrarCliente
             }}
         >
             {props.children}

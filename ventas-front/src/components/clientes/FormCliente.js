@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { ModalContext } from '../../contexts/modalContex';
+import { ClienteContext } from '../../contexts/clienteContext';
 
 const FormCliente = () => {
 
         const { showModal, modalTitle, setShowModal, setmodalTitle } = useContext(ModalContext);
     
+        const { registrarCliente } = useContext(ClienteContext);
 
     const clienteDefault = {
         nombres: '',
@@ -41,7 +43,8 @@ const FormCliente = () => {
         }
 
         // obtener objeto enviar
-        console.log(obtenerClienteAEnviar());
+        //console.log(obtenerClienteAEnviar());
+        registrarCliente(obtenerClienteAEnviar());
     
 
         // cerrar y limpiar el modal
