@@ -8,6 +8,7 @@ const TableCliente = () => {
     const  { clientesList, obtenerClientes } = useContext(ClienteContext);
     useEffect(() => {
         obtenerClientes();
+        // eslint-disable-next-line
     }, [])
     if (clientesList.length === 0) {
         return (<center><p>No existen clientes</p></center> );

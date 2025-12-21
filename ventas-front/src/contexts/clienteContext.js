@@ -2,6 +2,8 @@ import React, { createContext, useReducer } from 'react';
 import clienteReducer from '../reducer/clienteReducer';
 import { OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../components/const/actionTypes';
 import { type } from '@testing-library/user-event/dist/type';
+import { v4 as uuidv4 } from 'uuid';
+
 
 // 1. Crear el contexto
 export const ClienteContext = createContext();
@@ -43,9 +45,16 @@ export const ClienteContextProvider = (props) => {
         }
 
     const registrarCliente = cliente => {
+        let clienteNuevo = {
+            ...cliente,
+            idCliente:  uuidv4()
+        }
+
+        console.log(clienteNuevo);
+        
         dispatch({
             type: REGISTRAR_CLIENTE,
-            payload: cliente
+            payload: clienteNuevo
         })
     }
 
