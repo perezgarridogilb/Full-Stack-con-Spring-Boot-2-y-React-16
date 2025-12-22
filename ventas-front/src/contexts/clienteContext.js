@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import clienteReducer from '../reducer/clienteReducer';
-import { OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../components/const/actionTypes';
+import { OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../components/const/actionTypes';
 import { type } from '@testing-library/user-event/dist/type';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -12,7 +12,8 @@ export const ClienteContext = createContext();
 export const ClienteContextProvider = (props) => {
 
     const initialState = {
-        clientesList: []
+        clientesList: [],
+        clienteActual: null
     };
 
     const [state, dispatch] = useReducer(clienteReducer, initialState);
@@ -58,12 +59,23 @@ export const ClienteContextProvider = (props) => {
         })
     }
 
+            const obtenerCliente = (cliente) => {
+                
+            dispatch({
+                type: OBTENER_CLIENTE,
+                payload: cliente
+            })
+        }
+
     return (
         <ClienteContext.Provider
             value={{
                 clientesList: state.clientesList,
+                clienteActual: state.clienteActual,
+
                 obtenerClientes,
-                registrarCliente
+                registrarCliente,
+                obtenerCliente
             }}
         >
             {props.children}

@@ -1,4 +1,4 @@
-import { OBTENER_CLIENTES, REGISTRAR_CLIENTE } from "../components/const/actionTypes";
+import { OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from "../components/const/actionTypes";
 
 export default (state, action) => {
 
@@ -15,6 +15,11 @@ export default (state, action) => {
                 ...state,
                 clientesList: [...state.clientesList, action.payload]
             }
+        case OBTENER_CLIENTE:
+            return {
+                ...state,
+                clienteActual: action.payload
+            };
         default:
             return state;
     }

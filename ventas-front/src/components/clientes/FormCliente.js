@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ModalContext } from '../../contexts/modalContex';
 import { ClienteContext } from '../../contexts/clienteContext';
 
@@ -6,7 +6,7 @@ const FormCliente = () => {
 
         const { showModal, modalTitle, setShowModal, setmodalTitle } = useContext(ModalContext);
     
-        const { registrarCliente } = useContext(ClienteContext);
+        const { registrarCliente, clienteActual } = useContext(ClienteContext);
 
     const clienteDefault = {
         nombres: '',
@@ -32,6 +32,10 @@ const FormCliente = () => {
 
     const [cliente, setCliente] = useState(clienteDefault);
     const [mensaje, setMensaje] = useState(null);
+
+    useEffect(() => {
+
+    }, [clienteActual])
 
     const handleOnSubmit = e => {
         e.preventDefault();
