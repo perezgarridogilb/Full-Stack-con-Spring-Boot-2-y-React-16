@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import clienteReducer from '../reducer/clienteReducer';
-import { OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../components/const/actionTypes';
+import { MODIFICAR_CLIENTE, OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../components/const/actionTypes';
 import { type } from '@testing-library/user-event/dist/type';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -67,6 +67,13 @@ export const ClienteContextProvider = (props) => {
             })
         }
 
+        const actualizarCliente = cliente => {
+            dispatch({
+                type: MODIFICAR_CLIENTE,
+                payload: cliente
+            })
+        }
+
     return (
         <ClienteContext.Provider
             value={{
@@ -75,7 +82,8 @@ export const ClienteContextProvider = (props) => {
 
                 obtenerClientes,
                 registrarCliente,
-                obtenerCliente
+                obtenerCliente,
+                actualizarCliente
             }}
         >
             {props.children}

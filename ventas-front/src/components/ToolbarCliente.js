@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { ModalContext } from "../contexts/modalContex";
+import { ClienteContext } from '../contexts/clienteContext';
 
 
 const ToolbarCliente = () => {
@@ -7,10 +8,12 @@ const ToolbarCliente = () => {
         console.log("Modal Crear...");
         setShowModal(true);
         setmodalTitle('Registrar nuevo cliente');
-
-    }
+        obtenerCliente(null);
+;    }
 
        const { showModal, modalTitle, setShowModal, setmodalTitle } = useContext(ModalContext);
+
+       const { obtenerCliente } = useContext(ClienteContext);
     
         const cerrarModal = () => {
             setShowModal(false);

@@ -1,4 +1,4 @@
-import { OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from "../components/const/actionTypes";
+import { MODIFICAR_CLIENTE, OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from "../components/const/actionTypes";
 
 export default (state, action) => {
 
@@ -20,6 +20,14 @@ export default (state, action) => {
                 ...state,
                 clienteActual: action.payload
             };
+        case MODIFICAR_CLIENTE:
+            debugger;
+      return {
+        ...state,
+        clientesList: state.clientesList.map(
+          cliente => cliente.idCliente === action.payload.idCliente ? action.payload : cliente
+        )
+      };
         default:
             return state;
     }

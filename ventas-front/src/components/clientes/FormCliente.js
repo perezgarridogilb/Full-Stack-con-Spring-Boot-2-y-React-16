@@ -6,7 +6,7 @@ const FormCliente = () => {
 
         const { showModal, modalTitle, setShowModal, setmodalTitle } = useContext(ModalContext);
     
-        const { registrarCliente, clienteActual } = useContext(ClienteContext);
+        const { registrarCliente, actualizarCliente, clienteActual, obtenerCliente } = useContext(ClienteContext);
 
     const clienteDefault = {
         nombres: '',
@@ -19,7 +19,7 @@ const FormCliente = () => {
        const cerrarModal = () => {
            limpiarForm();
     setShowModal(false);
-    // obtenerCliente(null);     
+    obtenerCliente(null);     
     }
 
     const handleChange = e => {
@@ -34,7 +34,16 @@ const FormCliente = () => {
     const [mensaje, setMensaje] = useState(null);
 
     useEffect(() => {
-
+        if (clienteActual !== null) {
+            setCliente({
+                ...clienteActual,
+                direccion: clienteActual.direccion ? clienteActual.direccion : '',
+                telefono: clienteActual.telefono ? clienteActual.telefono : '',
+            })
+        } else {
+            setCliente(clienteDefault);
+        }
+        // eslint-disable-next-line
     }, [clienteActual])
 
     const handleOnSubmit = e => {
@@ -46,9 +55,16 @@ const FormCliente = () => {
             return;
         }
 
+        
         // obtener objeto enviar
-        //console.log(obtenerClienteAEnviar());
-        registrarCliente(obtenerClienteAEnviar());
+        if(clienteActual !== null) {
+            actualizarCliente(obtenerClienteAEnviar());
+        } else {
+            registrarCliente(obtenerClienteAEnviar());
+        }
+
+        // //console.log(obtenerClienteAEnviar());
+        // registrarCliente(obtenerClienteAEnviar());
     
 
         // cerrar y limpiar el modal
@@ -78,16 +94,16 @@ const FormCliente = () => {
         <form onSubmit={handleOnSubmit}>
       { mensaje ? <div className="notification is-danger">{mensaje}</div> : null }
 
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Nombre Completo</label>
+            <div className="field is-horizontal">
+                <div className="field-label is-normal">
+                    <label className="label">Nombre Completo</label>
                 </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control is-expanded has-icons-left">
+                <div className="field-body">
+                    <div className="field">
+                        <p className="control is-expanded has-icons-left">
                             <input
-                                autocomplete="off"
-                                class="input"
+                                autoComplete="off"
+                                className="input"
                                 type="text"
                                 placeholder="Nombre"
                                 name="nombres"
@@ -95,16 +111,16 @@ const FormCliente = () => {
                                 onChange={handleChange}
 
                             />
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-user"></i>
+                            <span className="icon is-small is-left">
+                                <i className="fas fa-user"></i>
                             </span>
                         </p>
                     </div>
-                    <div class="field">
-                        <p class="control is-expanded">
+                    <div className="field">
+                        <p className="control is-expanded">
                             <input
-                                autocomplete="off"
-                                class="input"
+                                autoComplete="off"
+                                className="input"
                                 type="text"
                                 placeholder="Apellidos"
                                 name="apellidos"
@@ -116,85 +132,85 @@ const FormCliente = () => {
                 </div>
             </div>
 
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Direccion</label>
+            <div className="field is-horizontal">
+                <div className="field-label is-normal">
+                    <label className="label">Direccion</label>
                 </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control is-expanded has-icons-left">
+                <div className="field-body">
+                    <div className="field">
+                        <div className="control is-expanded has-icons-left">
                             <input
-                                autocomplete="off"
-                                class="input"
+                                autoComplete="off"
+                                className="input"
                                 type="text"
                                 placeholder="Ingrese su direccion"
                                 name="direccion"
                                 value={cliente.direccion}
                                 onChange={handleChange}
                             />
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-map-marked-alt"></i>
+                            <span className="icon is-small is-left">
+                                <i className="fas fa-map-marked-alt"></i>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Telefono</label>
+            <div className="field is-horizontal">
+                <div className="field-label is-normal">
+                    <label className="label">Telefono</label>
                 </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control is-expanded has-icons-left">
+                <div className="field-body">
+                    <div className="field">
+                        <div className="control is-expanded has-icons-left">
                             <input
-                                autocomplete="off"
-                                class="input"
+                                autoComplete="off"
+                                className="input"
                                 type="text"
                                 placeholder="Telefono"
                                 name="telefono"
                                 value={cliente.telefono}
                                 onChange={handleChange}
                             />
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-phone"></i>
+                            <span className="icon is-small is-left">
+                                <i className="fas fa-phone"></i>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Email</label>
+            <div className="field is-horizontal">
+                <div className="field-label is-normal">
+                    <label className="label">Email</label>
                 </div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control is-expanded has-icons-left">
+                <div className="field-body">
+                    <div className="field">
+                        <div className="control is-expanded has-icons-left">
                             <input
-                                autocomplete="off"
-                                class="input"
+                                autoComplete="off"
+                                className="input"
                                 type="email"
                                 placeholder="Ingrese su Email"
                                 name="email"
                                 value={cliente.email}
                                 onChange={handleChange}
                             />
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-envelope"></i>
+                            <span className="icon is-small is-left">
+                                <i className="fas fa-envelope"></i>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="field is-horizontal">
-                <div class="field-label"></div>
-                <div class="field-body">
-                    <div class="field">
-                        <div class="control">
+            <div className="field is-horizontal">
+                <div className="field-label"></div>
+                <div className="field-body">
+                    <div className="field">
+                        <div className="control">
               <button type="submit" className="button is-primary mr-1">Guardar</button>
-                            <button type="button" class="button" onClick={ () => cerrarModal() }>Cancelar</button>
+                            <button type="button" className="button" onClick={ () => cerrarModal() }>Cancelar</button>
                         </div>
                     </div>
                 </div>
