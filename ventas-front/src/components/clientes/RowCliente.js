@@ -5,7 +5,7 @@ import { ClienteContext } from '../../contexts/clienteContext';
 const RowCliente = ({cliente}) => {
 
         const { setShowModal, setmodalTitle } = useContext(ModalContext);
-        const { obtenerCliente, clienteActual } = useContext(ClienteContext);
+        const { obtenerCliente, eliminarCliente } = useContext(ClienteContext);
     
 
     const abrirModificarCliente = () => {
@@ -16,10 +16,10 @@ const RowCliente = ({cliente}) => {
         console.log("Modificando...");        
     }
 
-    const eliminarCliente = () => {
-        console.log("Eliminando...");
+    // const eliminarCliente = () => {
+    //     console.log("Eliminando...");
         
-    }
+    // }
 
     return (
         <tr /* key={cliente.idCliente} */>
@@ -36,7 +36,7 @@ const RowCliente = ({cliente}) => {
                 <button 
                 className='button is-small is-danger' 
                 title='Eliminar'
-                onClick={ () => eliminarCliente() }
+                onClick={ () => eliminarCliente(cliente.idCliente) }
                 >
                     <span className='icon is-small'>
                         <i className='fas fa-trash-alt'></i>
