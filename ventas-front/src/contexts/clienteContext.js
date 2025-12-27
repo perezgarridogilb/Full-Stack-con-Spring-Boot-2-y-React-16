@@ -1,8 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import clienteReducer from '../reducer/clienteReducer';
 import { ELIMINAR_CLIENTE, MODIFICAR_CLIENTE, OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../components/const/actionTypes';
-import { type } from '@testing-library/user-event/dist/type';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import Axios from 'axios';
 
 
@@ -20,10 +19,14 @@ export const ClienteContextProvider = (props) => {
     const [state, dispatch] = useReducer(clienteReducer, initialState);
 
         const obtenerClientes = async () => {
-
+const response1 = [];
             try {
-        const response = await Axios.get('http://localhost:9090/api/clientes');
+         const response = await Axios.get('/clientes');
         console.log(response.data);
+                    dispatch({
+                type: OBTENER_CLIENTES,
+                payload: response.data
+            })
     } catch (error) {
         console.error(error);
     }
@@ -47,25 +50,24 @@ export const ClienteContextProvider = (props) => {
             }
         ];
     
-            dispatch({
-                type: OBTENER_CLIENTES,
-                payload: clientes
-            })
+
         }
 
-    const registrarCliente = cliente => {
-        let clienteNuevo = {
-            ...cliente,
-            idCliente:  uuidv4()
-        }
+const registrarCliente = async cliente => {
+  try {
+    const response = await Axios.post('/clientes', cliente);
 
-        console.log(clienteNuevo);
-        
-        dispatch({
-            type: REGISTRAR_CLIENTE,
-            payload: clienteNuevo
-        })
-    }
+    dispatch({
+      type: REGISTRAR_CLIENTE,
+      payload: response.data
+    });
+
+    return true; // ✅ éxito
+  } catch (error) {
+    console.error(error);
+    return false; // ❌ error
+  }
+};
 
             const obtenerCliente = (cliente) => {
                 

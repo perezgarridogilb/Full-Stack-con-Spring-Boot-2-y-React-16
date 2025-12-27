@@ -5,6 +5,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Clientes from './pages/Clientes';
 
+import axios from 'axios';
+
+axios.interceptors.request.use(config => {
+  config.baseURL = process.env.REACT_APP_API_BASE_URL;
+  return config;
+});
+
 function App() {
   return (
 

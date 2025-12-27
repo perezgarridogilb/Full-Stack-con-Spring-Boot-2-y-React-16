@@ -54,13 +54,13 @@ const FormCliente = () => {
             setMensaje('Los nombres, apellidos y el email son obligatorios.');
             return;
         }
-
+let band = false;
         
         // obtener objeto enviar
         if(clienteActual !== null) {
-            actualizarCliente(obtenerClienteAEnviar());
+             band =actualizarCliente(obtenerClienteAEnviar());
         } else {
-            registrarCliente(obtenerClienteAEnviar());
+             band =registrarCliente(obtenerClienteAEnviar());
         }
 
         // //console.log(obtenerClienteAEnviar());
@@ -68,7 +68,9 @@ const FormCliente = () => {
     
 
         // cerrar y limpiar el modal
-        cerrarModal();
+        if (band) {
+            cerrarModal();
+        }
     }
 
     const obtenerClienteAEnviar = () => {
