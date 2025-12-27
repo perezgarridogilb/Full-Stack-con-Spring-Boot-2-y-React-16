@@ -3,6 +3,7 @@ import clienteReducer from '../reducer/clienteReducer';
 import { ELIMINAR_CLIENTE, MODIFICAR_CLIENTE, OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../components/const/actionTypes';
 import { type } from '@testing-library/user-event/dist/type';
 import { v4 as uuidv4 } from 'uuid';
+import Axios from 'axios';
 
 
 // 1. Crear el contexto
@@ -18,7 +19,14 @@ export const ClienteContextProvider = (props) => {
 
     const [state, dispatch] = useReducer(clienteReducer, initialState);
 
-        const obtenerClientes = () => {
+        const obtenerClientes = async () => {
+
+            try {
+        const response = await Axios.get('http://localhost:9090/api/clientes');
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
     
         const clientes = [
             {
