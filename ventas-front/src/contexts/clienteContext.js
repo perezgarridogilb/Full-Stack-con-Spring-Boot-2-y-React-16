@@ -19,7 +19,7 @@ export const ClienteContextProvider = (props) => {
     const [state, dispatch] = useReducer(clienteReducer, initialState);
 
         const obtenerClientes = async () => {
-const response1 = [];
+// const response1 = [];
             try {
          const response = await Axios.get('/clientes');
         console.log(response.data);
@@ -69,12 +69,23 @@ const registrarCliente = async cliente => {
   }
 };
 
-            const obtenerCliente = (cliente) => {
-                
+  const obtenerCliente = async (cliente) => {
+                try {
+                    const clienteEncontrado = null;
+                    if (cliente !== null) {
+                    const response = await Axios.get(`/clientes/${cliente.idCliente}`);
+                        clienteEncontrado = response.data;
+                    } else {
+                        clienteEncontrado = cliente;
+                    }
             dispatch({
                 type: OBTENER_CLIENTE,
-                payload: cliente
+                payload: clienteEncontrado
             })
+    } catch (error) {
+        console.error(error);
+    }            
+
         }
 
         const actualizarCliente = cliente => {
