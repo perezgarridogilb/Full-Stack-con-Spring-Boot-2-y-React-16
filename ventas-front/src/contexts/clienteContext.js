@@ -71,7 +71,7 @@ export const ClienteContextProvider = (props) => {
 
     const obtenerCliente = async (cliente) => {
         try {
-            const clienteEncontrado = null;
+            let clienteEncontrado = null;
             if (cliente !== null) {
                 const response = await Axios.get(`/clientes/${cliente.idCliente}`);
                 clienteEncontrado = response.data;
@@ -88,11 +88,20 @@ export const ClienteContextProvider = (props) => {
 
     }
 
-    const actualizarCliente = cliente => {
-        dispatch({
-            type: MODIFICAR_CLIENTE,
-            payload: cliente
-        })
+    const actualizarCliente = async cliente => {
+        debugger;
+        try {
+
+            const response = await Axios.put(`/clientes`, cliente);
+
+            dispatch({
+                type: MODIFICAR_CLIENTE,
+                payload: response.data
+            })
+        } catch (error) {
+          console.log(error);
+            
+        }
     }
 
     const eliminarCliente = idCliente => {
