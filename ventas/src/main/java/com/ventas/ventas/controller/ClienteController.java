@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ventas.ventas.model.Cliente;
 import com.ventas.ventas.service.ClienteService;
 
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RestController
 @RequestMapping("/api/clientes")
 public class ClienteController {
+    private ObjectMapper objectMapper;
     @Autowired
     private ClienteService clienteService;
 
@@ -51,9 +53,12 @@ public class ClienteController {
     @PutMapping
     /** valid es código de error correcto */
     public ResponseEntity<Cliente> update(@Valid @RequestBody Cliente cliente) {
+        ObjectMapper mapper = new ObjectMapper();
+        // mapper.writeValueAsString(cliente)
         return clienteService.findById(cliente.getIdCliente()
         ).map(c -> ResponseEntity.ok(clienteService.update(cliente)))
         .orElseGet(() -> ResponseEntity.notFound().build());
+
     }
     
     @DeleteMapping("/{id}")

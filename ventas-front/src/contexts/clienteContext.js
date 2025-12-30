@@ -3,7 +3,7 @@ import clienteReducer from '../reducer/clienteReducer';
 import { ELIMINAR_CLIENTE, MODIFICAR_CLIENTE, OBTENER_CLIENTE, OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../components/const/actionTypes';
 // import { v4 as uuidv4 } from 'uuid';
 import Axios from 'axios';
-
+import Swal from 'sweetalert2';
 
 // 1. Crear el contexto
 export const ClienteContext = createContext();
@@ -29,6 +29,12 @@ export const ClienteContextProvider = (props) => {
             })
         } catch (error) {
             console.error(error);
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No se pudo obtener clientes",
+            toast: true
+        });
         }
 
         const clientes = [
@@ -62,9 +68,21 @@ export const ClienteContextProvider = (props) => {
                 payload: response.data
             });
 
+            Swal.fire({
+                icon: "success",
+                title: "Correcto",
+                text: "Cliente registrado correctamente",
+                toast: true
+            });
             return true; // ✅ éxito
         } catch (error) {
             console.error(error);
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No se pudo registrar el cliente",
+                toast: true
+            });
             return false; // ❌ error
         }
     };
@@ -84,6 +102,12 @@ export const ClienteContextProvider = (props) => {
             })
         } catch (error) {
             console.error(error);
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No se pudo obtener el cliente",
+                toast: true
+            });
         }
 
     }
@@ -98,17 +122,47 @@ export const ClienteContextProvider = (props) => {
                 type: MODIFICAR_CLIENTE,
                 payload: response.data
             })
+
+            Swal.fire({
+                icon: "success",
+                title: "Correcto",
+                text: "Cliente modificado correctamente",
+                toast: true
+            });
         } catch (error) {
           console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No se pudo modificar el cliente",
+                toast: true
+            });
             
         }
     }
 
     const eliminarCliente = idCliente => {
-        dispatch({
-            type: ELIMINAR_CLIENTE,
-            payload: idCliente
-        })
+        try {
+            
+            dispatch({
+                type: ELIMINAR_CLIENTE,
+                payload: idCliente
+            })
+
+            Swal.fire({
+                icon: "success",
+                title: "Correcto",
+                text: "Cliente eliminado correctamente",
+                toast: true
+            });
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No se pudo eliminar el cliente",
+                toast: true
+            });
+        }
     }
 
     return (
