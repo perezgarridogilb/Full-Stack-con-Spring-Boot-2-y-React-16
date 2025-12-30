@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
@@ -18,7 +20,11 @@ public class Cliente {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer IdCliente;
 
+        @Column(length = 20)
+        private String nit;
 
+        @Column(length = 100)
+        private String razonSocial;
 
         @NotNull
         @NotBlank(message = "El email es obligatorio")
@@ -26,6 +32,35 @@ public class Cliente {
         @Email(message = "El email no es válido")
         @Column(nullable = false, length = 150)
         private String email;
+
+        @OneToOne
+        @JoinColumn(name = "id_persona", nullable = false)
+        private Persona idPersona;
+
+        @Override
+        public int hashCode() {
+                final int prime = 31;
+                int result = 1;
+                result = prime * result + ((IdCliente == null) ? 0 : IdCliente.hashCode());
+                return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+                if (this == obj)
+                        return true;
+                if (obj == null)
+                        return false;
+                if (getClass() != obj.getClass())
+                        return false;
+                Cliente other = (Cliente) obj;
+                if (IdCliente == null) {
+                        if (other.IdCliente != null)
+                                return false;
+                } else if (!IdCliente.equals(other.IdCliente))
+                        return false;
+                return true;
+        }
 
         public Integer getIdCliente() {
                 return IdCliente;
@@ -35,6 +70,21 @@ public class Cliente {
                 IdCliente = idCliente;
         }
 
+        public String getNit() {
+                return nit;
+        }
+
+        public void setNit(String nit) {
+                this.nit = nit;
+        }
+
+        public String getRazonSocial() {
+                return razonSocial;
+        }
+
+        public void setRazonSocial(String razonSocial) {
+                this.razonSocial = razonSocial;
+        }
 
         public String getEmail() {
                 return email;
@@ -44,6 +94,14 @@ public class Cliente {
                 this.email = email;
         }
 
-        
+        public Persona getIdPersona() {
+                return idPersona;
+        }
+
+        public void setIdPersona(Persona idPersona) {
+                this.idPersona = idPersona;
+        }
+
+
 
 }
