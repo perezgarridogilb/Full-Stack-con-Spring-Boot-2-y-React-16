@@ -29,12 +29,12 @@ export const ClienteContextProvider = (props) => {
             })
         } catch (error) {
             console.error(error);
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "No se pudo obtener clientes",
-            toast: true
-        });
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "No se pudo obtener clientes",
+                toast: true
+            });
         }
 
         const clientes = [
@@ -130,31 +130,44 @@ export const ClienteContextProvider = (props) => {
                 toast: true
             });
         } catch (error) {
-          console.log(error);
+            console.log(error);
             Swal.fire({
                 icon: "error",
                 title: "Error",
                 text: "No se pudo modificar el cliente",
                 toast: true
             });
-            
+
         }
     }
 
     const eliminarCliente = idCliente => {
         try {
-            
-            dispatch({
-                type: ELIMINAR_CLIENTE,
-                payload: idCliente
-            })
+
 
             Swal.fire({
-                icon: "success",
-                title: "Correcto",
-                text: "Cliente eliminado correctamente",
-                toast: true
+                icon: "question",
+                title: "¿Desea continuar?",
+                text: "Se eliminará el cliente seleccionado",
+                showCancelButton: true,
+                confirmButtonText: 'Sí, eliminar'
+            }).then(async result => {
+                if (result.value) {
+                    await Axios.delete(`/clientes/${idCliente}`);
+                    dispatch({
+                        type: ELIMINAR_CLIENTE,
+                        payload: idCliente
+                    })
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "Correcto",
+                        text: "Cliente eliminado correctamente",
+                        toast: true
+                    });
+                }
             });
+
         } catch (error) {
             Swal.fire({
                 icon: "error",
