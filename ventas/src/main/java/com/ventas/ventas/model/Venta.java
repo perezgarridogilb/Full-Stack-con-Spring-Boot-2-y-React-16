@@ -1,13 +1,17 @@
 package com.ventas.ventas.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -25,6 +29,9 @@ public class Venta {
         /** una venta a muchos clientes */
         @JoinColumn(name = "id_cliente"/* , nullable = false */)
         private Cliente cliente;
+
+        @OneToMany(mappedBy = "venta", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+        private List<DetalleVenta> detalleVentaList;
 
         public Integer getIdVenta() {
             return idVenta;
