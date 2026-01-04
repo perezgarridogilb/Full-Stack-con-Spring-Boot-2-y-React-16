@@ -34,8 +34,8 @@ public class Cliente {
         private String email;
 
         @OneToOne
-        @JoinColumn(name = "id_persona", nullable = false)
-        private Persona idPersona;
+        @JoinColumn(name = "id_persona"/* , nullable = false */)
+        private Persona persona;
 
         @Override
         public int hashCode() {
@@ -94,13 +94,15 @@ public class Cliente {
                 this.email = email;
         }
 
-        public Persona getIdPersona() {
-                return idPersona;
+        public Persona getPersona() {
+                return persona;
         }
 
-        public void setIdPersona(Persona idPersona) {
-                this.idPersona = idPersona;
+        public void setPersona(Persona persona) {
+                this.persona = persona;
         }
+
+
 
 
 

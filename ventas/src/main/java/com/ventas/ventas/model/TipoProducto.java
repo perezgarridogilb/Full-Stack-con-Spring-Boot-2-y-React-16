@@ -19,14 +19,6 @@ public class TipoProducto {
     @Column(length = 15)
     private String nombre;
 
-    public Integer getIdTipoProducto() {
-        return idTipoProducto;
-    }
-
-    public void setIdTipoProducto(Integer idTipoProducto) {
-        this.idTipoProducto = idTipoProducto;
-    }
-
     public String getCodigo() {
         return codigo;
     }
@@ -42,5 +34,16 @@ public class TipoProducto {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public Integer getIdTipoProducto() {
+        return idTipoProducto;
+    }
+
+    public void setIdTipoProducto(Integer idTipoProducto) {
+        this.idTipoProducto = idTipoProducto;
+    }
+
+
+
 
 }

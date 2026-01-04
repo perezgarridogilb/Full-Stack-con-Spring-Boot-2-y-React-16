@@ -3,10 +3,14 @@ package com.ventas.ventas.model;
 import javax.swing.Spring;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
+@Entity
 public class Producto {
     
     @Id
@@ -20,6 +24,10 @@ public class Producto {
     private Integer nombre;
 
     private Double precio;
+
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_producto"/* , nullable = false */)
+    private TipoProducto tipoProducto;
 
     public Integer getIdProducto() {
         return idProducto;
