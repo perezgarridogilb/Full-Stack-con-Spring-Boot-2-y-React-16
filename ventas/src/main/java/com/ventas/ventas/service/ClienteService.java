@@ -10,7 +10,7 @@ import com.ventas.ventas.model.Cliente;
 import com.ventas.ventas.repository.IClienteRepository;
 
 @Service
-public class ClienteService implements IClienteService {
+public class ClienteService implements ICRUDService<Cliente> {
     @Autowired
     private IClienteRepository clienteRepo;
     @Override

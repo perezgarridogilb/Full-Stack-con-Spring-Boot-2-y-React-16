@@ -25,6 +25,8 @@ public class DetalleVenta {
     @JoinColumn(name = "id_venta")
     private Venta venta;
 
+  
+
     public Integer getIdDetalleVenta() {
         return idDetalleVenta;
     }
@@ -49,11 +51,11 @@ public class DetalleVenta {
         this.cantidad = cantidad;
     }
 
-    public Venta getProducto() {
+    public Producto getProducto() {
         return producto;
     }
 
-    public void setProducto(Venta producto) {
+    public void setProducto(Producto producto) {
         this.producto = producto;
     }
 
