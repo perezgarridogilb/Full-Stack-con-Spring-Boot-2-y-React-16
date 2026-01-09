@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ventas.ventas.model.DetalleVenta;
-import com.ventas.ventas.model.Persona;
 import com.ventas.ventas.repository.IDetalleVentaRepository;
-
+@Service
 public class DetalleVentaService implements ICRUDService<DetalleVenta> {
 
                 @Autowired
