@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ventas.ventas.model.DetalleVenta;
+import com.ventas.ventas.model.TipoProducto;
 import com.ventas.ventas.service.DetalleVentaService;
 
 import jakarta.validation.Valid;
@@ -36,6 +37,13 @@ public class DetalleVentaController {
     /** valid es código de error correcto */
     public ResponseEntity<DetalleVenta> create(@Valid @RequestBody DetalleVenta cliente) {
         return new ResponseEntity<>(detalleVentaService.create(cliente), HttpStatus.CREATED);
+    }
+
+            @GetMapping("/{id}")
+    public  ResponseEntity<DetalleVenta> findById(@PathVariable("id") Integer idDetalleVenta) {
+        return detalleVentaService.findById(idDetalleVenta)
+        .map(ResponseEntity::ok)
+        .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping

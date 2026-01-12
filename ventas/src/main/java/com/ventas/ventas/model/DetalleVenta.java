@@ -15,7 +15,7 @@ public class DetalleVenta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idDetalleVenta;
 
-    private Double precio;
+    private Double precioUnitartio;
 
     private Integer cantidad;
 
@@ -38,13 +38,6 @@ public class DetalleVenta {
         this.idDetalleVenta = idDetalleVenta;
     }
 
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
 
     public Integer getCantidad() {
         return cantidad;
@@ -93,6 +86,14 @@ public class DetalleVenta {
         } else if (!idDetalleVenta.equals(other.idDetalleVenta))
             return false;
         return true;
+    }
+
+    public Double getPrecioUnitartio() {
+        return precioUnitartio;
+    }
+
+    public void setPrecioUnitartio(Double precioUnitartio) {
+        this.precioUnitartio = precioUnitartio;
     }
 
     
