@@ -1,5 +1,7 @@
 package com.ventas.ventas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class DetalleVenta {
 
     private Integer cantidad;
 
+    @JsonIgnore /** bloquea anidados infinitos */
     @ManyToOne
     @JoinColumn(name = "id_producto"/* , nullable = false */)
     private Producto producto;

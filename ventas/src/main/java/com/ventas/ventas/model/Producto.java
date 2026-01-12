@@ -20,8 +20,8 @@ public class Producto {
     @Column(length = 15)
     private Integer codigo;
 
-        @Column(length = 150)
-    private Integer nombre;
+    @Column(name = "nombre", length = 150)
+    private String nombre;
 
     private Double precio;
 
@@ -45,11 +45,11 @@ public class Producto {
         this.codigo = codigo;
     }
 
-    public Integer getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(Integer nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
